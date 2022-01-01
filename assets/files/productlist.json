@@ -1,0 +1,100 @@
+[
+  {
+    "id": 0,
+    "name": "Arborio Rice",
+    "desc": "Pakistani Arborio rice",
+    "price": "540",
+    "oldPrice": "1899",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"
+  },
+  {
+    "id": 1,
+    "name": "Basmati Rice",
+    "desc": "Pakistani Basmati rice",
+    "price": "114",
+    "oldPrice": "999",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-basmati-600x400.jpg"
+
+  },
+  {
+    "id": 2,
+    "name": "Black Rice",
+    "desc": "Pakistani Black rice",
+    "price": "560",
+    "oldPrice": "1899",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-black-600x400.jpg"
+
+  },
+  {
+    "id": 3,
+    "name": "Jasmine Rice",
+    "desc": "Pakistani Jasmine rice",
+    "price": "480",
+    "oldPrice": "1899",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-jasmine-600x400.jpg"
+
+  },
+  {
+    "id": 4,
+    "name": "Brown Rice",
+    "desc": "Pakistani Brown rice",
+    "price": "333",
+    "oldPrice": "1899",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-brown-600x400.jpg"
+
+  },
+  {
+    "id": 5,
+    "name": "Red cargo Rice",
+    "desc": "Pakistani Red cargo rice",
+    "price": "450",
+    "oldPrice": "1899",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-red-600x400.jpg"
+
+  },
+  {
+    "id": 6,
+    "name": "Parboiled Rice",
+    "desc": "Pakistani Parboiled rice",
+    "price": "200",
+    "oldPrice": "1899",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-parboiled-600x400.jpg"
+
+  },
+  {
+    "id": 7,
+    "name": "Sticky Rice",
+    "desc": "Pakistani Sticky rice",
+    "price": "790",
+    "oldPrice": "1899",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-sticky-sweet-600x400.jpg"
+
+  },
+  {
+    "id": 8,
+    "name": "Sushi Rice",
+    "desc": "Pakistani Sushi rice",
+    "price": "980",
+    "oldPrice": "1899",
+    "imageUrl": "https://mms17-makemysushi.netdna-ssl.com/wp-content/uploads/2016/02/rice0-min.jpg"
+
+  },
+  {
+    "id": 9,
+    "name": "Sticky Rice",
+    "desc": "Pakistani Sticky rice",
+    "price": "790",
+    "oldPrice": "1899",
+    "imageUrl": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-sticky-sweet-600x400.jpg"
+
+  },
+  {
+    "id": 10,
+    "name": "Sushi Rice",
+    "desc": "Pakistani Sushi rice",
+    "price": "980",
+    "oldPrice": "1899",
+    "imageUrl": "https://mms17-makemysushi.netdna-ssl.com/wp-content/uploads/2016/02/rice0-min.jpg"
+
+  }
+]

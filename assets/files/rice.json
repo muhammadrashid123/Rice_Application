@@ -1,0 +1,74 @@
+[
+		{
+			"id": 1,
+      		"name": "Arborio Rice",
+      		"desc": "Pakistani Arborio rice",
+      		"price": "540",
+      		"image": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"
+    
+		},
+		{
+			"id": 2,
+      		"name": "Basmati Rice",
+      		"desc": "Pakistani Basmati rice",
+      		"price": "114",
+      		"image": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-basmati-600x400.jpg"
+    
+		},
+		{
+			"id": 3,
+      		"name": "Black Rice",
+      		"desc": "Pakistani Black rice",
+      		"price": "560",
+      		"image": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-black-600x400.jpg"
+    
+		},
+		{
+			"id": 4,
+      		"name": "Jasmine Rice",
+      		"desc": "Pakistani Jasmine rice",
+      		"price": "480",
+      		"image": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-jasmine-600x400.jpg"
+    
+		},
+		{
+			"id": 5,
+      		"name": "Brown Rice",
+      		"desc": "Pakistani Brown rice",
+      		"price": "333",
+      		"image": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-brown-600x400.jpg"
+    
+		},
+		{
+			"id": 6,
+      		"name": "Red cargo Rice",
+      		"desc": "Pakistani Red cargo rice",
+      		"price": "450",
+      		"image": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-red-600x400.jpg"
+    
+		},
+		{
+			"id": 7,
+      		"name": "Parboiled Rice",
+      		"desc": "Pakistani Parboiled rice",
+      		"price": "200",
+      		"image": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-parboiled-600x400.jpg"
+    
+		},
+		{
+			"id": 8,
+      		"name": "Sticky Rice",
+      		"desc": "Pakistani Sticky rice",
+      		"price": "790",
+      		"image": "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-sticky-sweet-600x400.jpg"
+    
+		},
+		{
+			"id": 9,
+      		"name": "Sushi Rice",
+      		"desc": "Pakistani Sushi rice",
+      		"price": "980",
+      		"image": "https://mms17-makemysushi.netdna-ssl.com/wp-content/uploads/2016/02/rice0-min.jpg"
+    
+		}
+	]
