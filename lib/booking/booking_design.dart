@@ -18,8 +18,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         elevation: 0,
         title: Text(
-          "Advance Booking",
+          "Advance Booking App",
           style: TextStyle(
+            // this Text
             color: Color(0xff636363),
             fontSize: 22,
           ),
