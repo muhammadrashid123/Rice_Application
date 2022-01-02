@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rice/screens/forget_password.dart';
+import 'package:rice/Admin/admin_home.dart';
 import 'package:rice/screens/home_page.dart';
 import 'package:rice/screens/sign_up.dart';
 import 'package:rice/widgets/set.dart';
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => HomePage()));
+                                            builder: (context) => AdminHome()));
                                   }
                                 },
                                 child: new Container(
