@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rice/screens/home_page.dart';
 import 'package:rice/screens/sign_up.dart';
 import 'package:rice/widgets/set.dart';
-
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:toast/toast.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/gestures.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -14,6 +14,7 @@ class ForgetPasswordScreen extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -87,7 +88,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                 child: InkWell(
                                     onTap: () {
                                       if (_formkey.currentState.validate()) {
-                                        Navigator.pop(context);
+                                        Toast.show('Password sent to your email',context);
                                       }
                                     },
                                     child: new Container(
@@ -95,7 +96,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                       width: double.infinity,
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "Submit",
+                                        "Send password",
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 20),
                                       ),
