@@ -96,6 +96,7 @@ class _AdminAddProductState extends State<AdminAddProduct> {
   }
 
   Widget _buildPopupDialog(BuildContext context) {
+    var pickedImage;
     return new AlertDialog(
       title: const Text('Add Products'),
       content: new Column(
@@ -107,6 +108,65 @@ class _AdminAddProductState extends State<AdminAddProduct> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Stack(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.green, width: 3),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(100),
+                              ),
+                            ),
+                            child: ClipOval(
+                                child: pickedImage != null
+                                    ? Image.file(
+                                        pickedImage,
+                                        width: 170,
+                                        height: 170,
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.green,
+                                        size: 100,
+                                      )),
+                          ),
+                          // Positioned(
+                          //   bottom: 0,
+                          //   right: 7,
+                          //   child: IconButton(
+                          //     onPressed: () {},
+                          //     icon: const Icon(
+                          //       Icons.add_a_photo_outlined,
+                          //       color: Colors.blue,
+                          //       size: 30,
+                          //     ),
+                          //   ),
+                          // )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: const Icon(Icons.add_a_photo_sharp),
+                          label: const Text('UPLOAD IMAGE')),
+                    )
+                  ],
+                ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -117,6 +177,12 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                   padding: EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(hintText: "Enter Description"),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(hintText: "Enter Quantity"),
                   ),
                 ),
                 Padding(

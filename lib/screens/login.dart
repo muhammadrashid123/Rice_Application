@@ -6,6 +6,8 @@ import 'package:rice/widgets/set.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/gestures.dart';
 
+import 'forget_password.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({key}) : super(key: key);
 
@@ -146,23 +148,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 )),
                           ),
-       // Forget-Password part which on clicking take user to forget-password screen
+                          // Forget-Password part which on clicking take user to forget-password screen
                           Container(
-                            padding: const EdgeInsets.only(top: 5) ,
+                            padding: const EdgeInsets.only(top: 5),
                             alignment: Alignment.bottomRight,
-                              child: RichText(
-                                   text: TextSpan(
-                                        text: 'Forget Password',
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () => Navigator.push(context,
-                                                          MaterialPageRoute(builder: (context) => ForgetPasswordScreen())),
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline,
-                                          fontSize: 15,
-                                        )),
-                                ),
-                              )
+                            child: RichText(
+                              text: TextSpan(
+                                  text: 'Forget Password',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ForgetPasswordScreen())),
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    decoration: TextDecoration.underline,
+                                    fontSize: 15,
+                                  )),
+                            ),
+                          )
                         ],
                       ),
                     )),
