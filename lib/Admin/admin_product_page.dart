@@ -4,7 +4,6 @@ import 'package:rice/booking/booking_design.dart';
 import 'package:rice/screens/details_page.dart';
 import 'package:rice/screens/home_page.dart';
 import 'package:rice/screens/login.dart';
-import 'package:rice/widgets/bottom_navigation_bar.dart';
 
 class AdminAddProduct extends StatefulWidget {
   @override
@@ -61,24 +60,24 @@ class _AdminAddProductState extends State<AdminAddProduct> {
           children: [
             Card(
                 child: InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SuperBasmati()));
-                  },
-                  child: ListTile(
-                    title: Text(" Long-Grain Rice"),
-                    subtitle: Text("Pakistani Arborio rice"),
-                    leading: Image.network(
-                        "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
-                    trailing: Text(
-                      "Rs. 190",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                          fontSize: 18),
-                    ),
-                  ),
-                )),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SuperBasmati()));
+              },
+              child: ListTile(
+                title: Text(" Long-Grain Rice"),
+                subtitle: Text("Pakistani Arborio rice"),
+                leading: Image.network(
+                    "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
+                trailing: Text(
+                  "Rs. 190",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                      fontSize: 18),
+                ),
+              ),
+            )),
           ],
         ),
       ),
@@ -111,20 +110,19 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextFormField(
-                    decoration:
-                    InputDecoration(hintText: "Enter Category Name"),
+                    decoration: InputDecoration(hintText: "Enter Product Name"),
                   ),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.all(8.0),
-                //   child: TextFormField(
-                //     decoration: InputDecoration(hintText: "Slogen Line"),
-                //   ),
-                // ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(hintText: "Enter Description"),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(hintText: "Enter Price"),
                   ),
                 ),
                 Padding(
