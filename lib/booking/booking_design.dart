@@ -5,6 +5,13 @@ import 'package:flutter/services.dart' as rootBundle;
 import 'package:rice/booking/booking_model.dart';
 import 'package:rice/screens/details_page.dart';
 import 'package:rice/screens/login.dart';
+import 'package:firebase_database/firebase_database.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_core/firebase_core.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cupertino_icons/cupertino_icons.dart';
+
+
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -12,6 +19,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<ProductDataModel> items=[];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    DatabaseReference referenceData = FirebaseDatabase.instance.reference().child("advance-booking-product");
+    referenceData.once().then((DataSnapshot dataSnapShot){
+      items.clear();
+      var keys = dataSnapShot.value.keys;
+      var values = dataSnapShot.value;
+
+      for(var key in keys) {
+        ProductDataModel data = new ProductDataModel(
+            values [key]["coming_date"],
+            values [key]["description"],
+            values [key]["image"],
+            values [key]["price"],
+            values [key]["name"]);
+        items.add(data);
+      }
+      setState(() {
+        //
+      });
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,14 +84,9 @@ class _MyHomePageState extends State<MyHomePage> {
               )),
         ],
       ),
-      body: FutureBuilder(
-        future: ReadJsonData(),
-        builder: (context, data) {
-          if (data.hasError) {
-            return Center(child: Text("${data.error}"));
-          } else if (data.hasData) {
-            var items = data.data as List<ProductDataModel>;
-            return ListView.builder(
+      body:
+          items.length==0 ? Center(child: Text("No Data Available")):
+            ListView.builder(
                 padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
                 itemCount: items == null ? 0 : items.length,
                 itemBuilder: (context, index) {
@@ -75,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Image.network(items[index].imageURL.toString()),
                         title: Text(items[index].name.toString()),
                         subtitle: Text(
-                            "The Old Price is ${items[index].oldPrice.toString()}"),
+                            "The Date is ${items[index].date.toString()}"),
                         trailing: Text(
                           "Rs. ${items[index].price.toString()}",
                           style: TextStyle(
@@ -86,23 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   );
-                });
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
-      ),
+                })
+
     );
   }
-
-  // ignore: non_constant_identifier_names
-  Future<List<ProductDataModel>> ReadJsonData() async {
-    final jsondata =
-        await rootBundle.rootBundle.loadString("assets/files/productlist.json");
-    final list = json.decode(jsondata) as List<dynamic>;
-
-    return list.map((e) => ProductDataModel.fromJson(e)).toList();
-  }
 }
+
