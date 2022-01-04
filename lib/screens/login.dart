@@ -181,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           MaterialPageRoute(
                               builder: (context) => SignUpPage()));
                       Fluttertoast.showToast(
-                        msg: "This page is unavailable",
+                        msg: "Create New Account",
                       );
                     },
                     child: Text("Create New Account"))

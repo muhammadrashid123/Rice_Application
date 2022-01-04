@@ -31,28 +31,6 @@ class _AdminHomeState extends State<AdminHome> {
           color: Color(0xff636363),
         ),
         backgroundColor: Color(0xffeaeaea),
-        actions: <Widget>[
-          // Padding(
-          //     padding: EdgeInsets.only(right: 20.0),
-          //     child: GestureDetector(
-          //       onTap: () {},
-          //       child: Icon(
-          //         Icons.add_shopping_cart,
-          //         size: 26.0,
-          //       ),
-          //     )),
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
-                },
-                child: Icon(
-                  Icons.login_rounded,
-                ),
-              )),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
