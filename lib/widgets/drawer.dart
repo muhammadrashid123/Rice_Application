@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rice/Admin/admin_category.dart';
 import 'package:rice/Admin/admin_home.dart';
+import 'package:rice/Advance_Booking_Admin/advance_booking_admin.dart';
 import 'package:rice/screens/rice_type.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -64,6 +65,14 @@ class _MyDrawerState extends State<MyDrawer> {
           ListTile(
             leading: Icon(Icons.add_box_rounded),
             title: Text("Advance Booking"),
+            onTap: () {
+              // showDialog(
+              //   context: context,
+              //   builder: (BuildContext context) => _buildPopupDialog(context),
+              // );
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AdvanceBookingAdmin()));
+            },
           ),
           Divider(height: 2),
           ListTile(

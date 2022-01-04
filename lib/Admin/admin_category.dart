@@ -35,30 +35,6 @@ class _AdminCategoryState extends State<AdminCategory> {
           ),
         ),
         backgroundColor: Color(0xffeaeaea),
-        actions: <Widget>[
-          // Padding(
-          //     padding: EdgeInsets.only(right: 20.0),
-          //     child: GestureDetector(
-          //       onTap: () {},
-          //       child: Icon(
-          //         Icons.add,
-          //         size: 26.0,
-          //         color: Color(0xff636363),
-          //       ),
-          //     )),
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
-                },
-                child: Icon(
-                  Icons.login_rounded,
-                  color: Color(0xff636363),
-                ),
-              )),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -71,8 +47,10 @@ class _AdminCategoryState extends State<AdminCategory> {
                     MaterialPageRoute(builder: (context) => AdminAddProduct()));
               },
               child: ListTile(
-                title: Text(" Long-Grain Rice"),
-                subtitle: Text("Pakistani Arborio rice"),
+                contentPadding: EdgeInsets.all(5),
+                title: Text("Category Name"),
+                leading: Image.network(
+                    "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-black-600x400.jpg"),
                 // leading: Image.network(
                 //     "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
                 // trailing: Text(
@@ -141,18 +119,6 @@ class _AdminCategoryState extends State<AdminCategory> {
                                   size: 100,
                                 )),
                     ),
-                    // Positioned(
-                    //   bottom: 0,
-                    //   right: 7,
-                    //   child: IconButton(
-                    //     onPressed: () {},
-                    //     icon: const Icon(
-                    //       Icons.add_a_photo_outlined,
-                    //       color: Colors.blue,
-                    //       size: 30,
-                    //     ),
-                    //   ),
-                    // )
                   ],
                 ),
               ),

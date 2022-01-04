@@ -5,12 +5,12 @@ import 'package:rice/screens/details_page.dart';
 import 'package:rice/screens/home_page.dart';
 import 'package:rice/screens/login.dart';
 
-class AdminAddProduct extends StatefulWidget {
+class AdvanceBookingAdmin extends StatefulWidget {
   @override
-  _AdminAddProductState createState() => _AdminAddProductState();
+  _AdvanceBookingAdminState createState() => _AdvanceBookingAdminState();
 }
 
-class _AdminAddProductState extends State<AdminAddProduct> {
+class _AdvanceBookingAdminState extends State<AdvanceBookingAdmin> {
   var _pageData = [HomePage(), MyHomePage()];
   int _selectedItem = 0;
   final _formKey = GlobalKey<FormState>();
@@ -22,7 +22,7 @@ class _AdminAddProductState extends State<AdminAddProduct> {
         iconTheme: IconThemeData(color: Color(0xff636363)),
         elevation: 0,
         title: Text(
-          "Add Products",
+          "Add Advance Booking",
           style: TextStyle(
             color: Color(0xff636363),
             fontSize: 22,
@@ -41,12 +41,12 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                     MaterialPageRoute(builder: (context) => SuperBasmati()));
               },
               child: ListTile(
-                title: Text(" Long-Grain Rice"),
-                subtitle: Text("Pakistani Arborio rice"),
+                title: Text(" Rice Name"),
+                subtitle: Text("Coming Soon Date"),
                 leading: Image.network(
                     "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
                 trailing: Text(
-                  "Rs. 190",
+                  "Rs. 000",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.green,
@@ -74,7 +74,7 @@ class _AdminAddProductState extends State<AdminAddProduct> {
   Widget _buildPopupDialog(BuildContext context) {
     var pickedImage;
     return new AlertDialog(
-      title: const Text('Add Products'),
+      title: const Text('Add Advance Booking'),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,18 +116,6 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                                         size: 100,
                                       )),
                           ),
-                          // Positioned(
-                          //   bottom: 0,
-                          //   right: 7,
-                          //   child: IconButton(
-                          //     onPressed: () {},
-                          //     icon: const Icon(
-                          //       Icons.add_a_photo_outlined,
-                          //       color: Colors.blue,
-                          //       size: 30,
-                          //     ),
-                          //   ),
-                          // )
                         ],
                       ),
                     ),
@@ -153,6 +141,12 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                   padding: EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(hintText: "Enter Description"),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(hintText: "Coming Date"),
                   ),
                 ),
                 Padding(
