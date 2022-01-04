@@ -138,46 +138,6 @@ class _AdminHomeState extends State<AdminHome> {
                         height: 80,
                         width: 80,
                         decoration: BoxDecoration(
-                            color: Colors.orange,
-                            borderRadius: BorderRadius.circular(100)),
-                        child: Icon(
-                          Icons.question_answer,
-                          color: Colors.white,
-                          size: 40,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Requests",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                          Text(
-                            "12 Requests",
-                            style:
-                                TextStyle(color: Colors.black45, fontSize: 16),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                margin: EdgeInsets.symmetric(vertical: 5),
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 80,
-                        width: 80,
-                        decoration: BoxDecoration(
                             color: Colors.pink,
                             borderRadius: BorderRadius.circular(100)),
                         child: Icon(
@@ -233,7 +193,7 @@ class _AdminHomeState extends State<AdminHome> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Selling Produce",
+                            "Selling Products",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),

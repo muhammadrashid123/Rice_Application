@@ -61,9 +61,10 @@ class _HomePageState extends State<HomePage> {
               Text(
                 "Rice Category",
                 style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                ),
               ),
               SizedBox(
                 height: 20,

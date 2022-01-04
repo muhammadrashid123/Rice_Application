@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:rice/screens/home_page.dart';
 import 'package:rice/widgets/bottom_navigation_bar.dart';
 
 class SplashScreen extends StatefulWidget {

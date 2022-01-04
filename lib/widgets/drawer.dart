@@ -70,8 +70,10 @@ class _MyDrawerState extends State<MyDrawer> {
               //   context: context,
               //   builder: (BuildContext context) => _buildPopupDialog(context),
               // );
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AdvanceBookingAdmin()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AdvanceBookingAdmin()));
             },
           ),
           Divider(height: 2),
