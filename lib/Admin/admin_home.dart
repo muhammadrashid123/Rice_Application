@@ -48,223 +48,204 @@ class _AdminHomeState extends State<AdminHome> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 700,
-                width: double.infinity,
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TypeRice()));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.network(
-                                "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Arborio Rice",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          ],
+              Card(
+                margin: EdgeInsets.symmetric(vertical: 5),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.teal,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Icon(
+                          Icons.people,
+                          color: Colors.white,
+                          size: 40,
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TypeRice()));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.network(
-                                "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-basmati-600x400.jpg"),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Basmati Rice",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Visitor",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          Text(
+                            "458 Views",
+                            style:
+                                TextStyle(color: Colors.black45, fontSize: 16),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.symmetric(vertical: 5),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Icon(
+                          Icons.shopping_bag,
+                          color: Colors.white,
+                          size: 40,
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TypeRice()));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.network(
-                                "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-black-600x400.jpg"),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Black Rice",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "New Order",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          Text(
+                            "0 Order",
+                            style:
+                                TextStyle(color: Colors.black45, fontSize: 16),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.symmetric(vertical: 5),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Icon(
+                          Icons.question_answer,
+                          color: Colors.white,
+                          size: 40,
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TypeRice()));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.network(
-                                "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-jasmine-600x400.jpg"),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Jasmine Rice",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Requests",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          Text(
+                            "12 Requests",
+                            style:
+                                TextStyle(color: Colors.black45, fontSize: 16),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.symmetric(vertical: 5),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.pink,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Icon(
+                          Icons.margin,
+                          color: Colors.white,
+                          size: 40,
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TypeRice()));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.network(
-                                "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-brown-600x400.jpg"),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Brown Rice",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Remaining Products",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          Text(
+                            "35 Remaining",
+                            style:
+                                TextStyle(color: Colors.black45, fontSize: 16),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.symmetric(vertical: 5),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.lightGreen,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Icon(
+                          Icons.add_shopping_cart,
+                          color: Colors.white,
+                          size: 40,
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TypeRice()));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.network(
-                                "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-red-600x400.jpg"),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Red cargo Rice",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          ],
-                        ),
+                      SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TypeRice()));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.network(
-                                "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-parboiled-600x400.jpg"),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Parboiled Rice",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TypeRice()));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.network(
-                                "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-sticky-sweet-600x400.jpg"),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Sticky Rice",
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Selling Produce",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          Text(
+                            "67 Items Sale",
+                            style:
+                                TextStyle(color: Colors.black45, fontSize: 16),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
