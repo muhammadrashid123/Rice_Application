@@ -1,15 +1,16 @@
 class ProductDataModel {
   String name;
   String des;
-  String imageURL;
+  //String imageURL;
   String date;
-  int price;
+  String price;
 
-  ProductDataModel(
+  ProductDataModel({
       this.date,
-      this.des,
-      this.imageURL,
+      this.des,//
+      this.name,
       this.price,
-      this.name);
+      });
+
 
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rice/Admin/admin_home.dart';
 import 'package:rice/screens/home_page.dart';
 import 'package:rice/screens/sign_up.dart';
+import 'package:rice/widgets/bottom_navigation_bar.dart';
 import 'package:rice/widgets/set.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/gestures.dart';
@@ -159,7 +160,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 //       context,
                                 //       MaterialPageRoute(
                                 //           builder: (context) => AdminHome()));
-                                 signIn(emailController.text,passwordController.text );
+                                if(emailController.text=="admin@gmail.com"&&passwordController.text=="123456"){
+                                Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) => AdminHome()));
+                                }else{
+
+                                signIn(emailController.text,passwordController.text );
+
+                                }
 
                               },
                               child: new Container(
@@ -226,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
             .then((uid) => {
           Fluttertoast.showToast(msg: "Login Successful"),
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => AdminHome())),
+              MaterialPageRoute(builder: (context) => MyBottomNavigationBar())),
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {

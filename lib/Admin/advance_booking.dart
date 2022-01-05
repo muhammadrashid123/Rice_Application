@@ -1,28 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rice/booking/booking_design.dart';
-import 'package:rice/models/product_model.dart';
+import 'package:rice/booking/booking_model.dart';
 import 'package:rice/screens/details_page.dart';
 import 'package:rice/screens/home_page.dart';
 import 'package:rice/screens/login.dart';
 
-class AdminAddProduct extends StatefulWidget {
+class AdvanceBooking extends StatefulWidget {
   @override
-  _AdminAddProductState createState() => _AdminAddProductState();
+  _AdvanceBookingState createState() => _AdvanceBookingState();
 }
 
-class _AdminAddProductState extends State<AdminAddProduct> {
-  final fb = FirebaseDatabase.instance;
+class _AdvanceBookingState extends State<AdvanceBooking> {
   var _pageData = [HomePage(), MyHomePage()];
   int _selectedItem = 0;
   final _formKey = GlobalKey<FormState>();
 
   final productNameController = new TextEditingController();
   final descriptionEditingController = new TextEditingController();
-  final quantityController = new TextEditingController();
+  final dateController = new TextEditingController();
   final priceController = new TextEditingController();
   //final confirmPasswordEditingController = new TextEditingController();
 
@@ -34,7 +32,7 @@ class _AdminAddProductState extends State<AdminAddProduct> {
         iconTheme: IconThemeData(color: Color(0xff636363)),
         elevation: 0,
         title: Text(
-          "Add Products",
+          "Add Advance Booking",
           style: TextStyle(
             color: Color(0xff636363),
             fontSize: 22,
@@ -69,54 +67,54 @@ class _AdminAddProductState extends State<AdminAddProduct> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('Product_type')
-                .snapshots()
-                .map((event) => event.docs
-                    .map((e) => ProductModel(
-                        des: e['description'],
-                        name: e['name'],
-                        price: e['price'],
-                        quantity: e['quantity']))
-                    .toList()),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                // print('snapshot1: ' + snapshot.error.toString());
-                return Center(
-                  child: Text(snapshot.error.toString()),
-                );
-              } else if (snapshot.hasData) {
-                return ListView.builder(
-                    itemCount: snapshot.data?.length ?? 0,
-                    itemBuilder: (BuildContext context, int index) {
-                      ProductModel productData = snapshot.data[index];
-                      return Card(
-                          child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SuperBasmati()));
-                        },
-                        child: ListTile(
-                          title: Text(productData.name),
-                          subtitle: Text(productData.des),
-                          //leading: Image.network(
-                          //  "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
-                          trailing: Text(
-                            productData.price,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.green,
-                                fontSize: 18),
-                          ),
+          stream: FirebaseFirestore.instance
+              .collection('advance-booking-product')
+              .snapshots()
+              .map((event) => event.docs
+              .map((e) => ProductDataModel(
+              date: e['date'],
+              des: e['description'],
+              name: e['name'],
+              price: e['price']))
+              .toList()),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              // print('snapshot1: ' + snapshot.error.toString());
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            }else if(snapshot.hasData){
+            return ListView.builder(
+            itemCount: snapshot.data?.length ?? 0,
+              itemBuilder: (BuildContext context,int index){
+              ProductDataModel productData = snapshot.data[index];
+                return Card(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => SuperBasmati()));
+                      },
+                      child: ListTile(
+                        title: Text(productData.name),
+                        subtitle: Text(productData.des),
+                        //leading: Image.network(
+                        //  "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
+                        trailing: Text(
+                          productData.price,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.green,
+                              fontSize: 18),
                         ),
-                      ));
-                    });
-              } else {
+                      ),
+                    ));}
+    );}
+            else
+              {
                 return Center(child: CircularProgressIndicator());
               }
-            }),
+          }
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -231,7 +229,7 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextFormField(
-                    controller: quantityController,
+                    controller: dateController,
                     validator: (value) {
                       if (value.isEmpty) {
                         return ("Please Enter Date");
@@ -260,14 +258,15 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                       if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
                         FirebaseFirestore.instance
-                            .collection('Product_type')
+                            .collection('advance-booking-product')
                             .add({
+                          'date': dateController.text,
                           'description': descriptionEditingController.text,
                           'name': productNameController.text,
-                          'price': priceController.text,
-                          'quantity': quantityController.text
+                          'price': priceController.text
                         });
-                        Fluttertoast.showToast(msg: "Product added Successful");
+                        Fluttertoast.showToast(
+                            msg: "Product added Successful");
                       }
                     },
                   ),

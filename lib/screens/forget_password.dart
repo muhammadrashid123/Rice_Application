@@ -95,7 +95,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                               //   Fluttertoast.showToast(
                               //       msg: "Password sent to your email");
                               // }
-                              await auth.sendPasswordResetEmail(email: _email);
+                              await auth.sendPasswordResetEmail(email: email.text);
                               Navigator.of(context).pop();
                               // Toast.show('Password sent to your email',context);
                               Fluttertoast.showToast(
