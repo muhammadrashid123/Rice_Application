@@ -90,21 +90,24 @@ class _MyHomePageState extends State<MyHomePage> {
         body:
 
             //items.length==0 ? Center(child: Text("No Data Available")):
-            StreamBuilder(
+        StreamBuilder<List<ProductDataModel>>(
                 stream: FirebaseFirestore.instance
                     .collection('advance-booking-product')
                     .snapshots()
                     .map((event) => event.docs
                         .map((e) => ProductDataModel(
-                            date: e['date'],
-                            des: e['description'],
-                            name: e['name'],
-                            price: e['price']))
+                            date: e.data()['date'],
+                            des: e.data()['description'],
+                            name: e.data()['name'],
+                            price: e.data()['price']))
                         .toList()),
                 builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    // print('snapshot1: ' + snapshot.error.toString());
+                  print("Start..");
+                  print(snapshot.data);
+                  if (snapshot.hasError ) {
+                     print('snapshot1: ' + snapshot.error.toString());
                     print("Errorrr");
+                    print(snapshot.data);
                     return Center(
                       child: Text(snapshot.error.toString()),
                     );
@@ -113,9 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
                       itemCount: snapshot.data?.length ?? 0,
                       itemBuilder: (context, index) {
-                        ProductDataModel productData =
+                        ProductDataModel productDataModel =
                         snapshot.data[index];
-                        return InkWell(
+
+                          return InkWell(
                           onTap: () {
                             Navigator.push(
                                 context,
@@ -126,11 +130,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: ListTile(
                               //leading:
                               //  Image.network(items[index].imageURL.toString()),
-                              title: Text(productData.name),
+                              title: Text(productDataModel.name),
                               subtitle:
-                                  Text("The Date is ${productData.date}"),
+                                  Text("The Date is ${productDataModel.date}"),
                               trailing: Text(
-                                "Rs. ${productData.price}",
+                                "Rs. ${productDataModel.price}",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green,

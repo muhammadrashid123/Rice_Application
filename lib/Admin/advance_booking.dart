@@ -9,6 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:rice/booking/booking_design.dart';
 import 'package:rice/booking/booking_model.dart';
+import 'package:rice/models/book_in_advance.dart';
 import 'package:rice/models/category_model.dart';
 import 'package:rice/screens/details_page.dart';
 import 'package:rice/screens/home_page.dart';
@@ -51,7 +52,7 @@ class _AdvanceBookingState extends State<AdvanceBooking> {
         iconTheme: IconThemeData(color: Color(0xff636363)),
         elevation: 0,
         title: Text(
-          "Add Category",
+          "Add Advance Booking",
           style: TextStyle(
             color: Color(0xff636363),
             fontSize: 22,
@@ -90,11 +91,11 @@ class _AdvanceBookingState extends State<AdvanceBooking> {
                 .collection('advance-booking-product')
                 .snapshots()
                 .map((event) => event.docs
-                .map((e) => ProductDataModel(
-              date: e['date'],
-              des: e['description'],
-              name: e['name'],
-              price: e['price'],
+                .map((e) => AdvanceBookingModel(
+              date: e.data()['date'],
+              des: e.data()['description'],
+              name: e.data()['name'],
+              price: e.data()['price'],
             ))
                 .toList()),
             builder: (context, snapshot) {
@@ -107,7 +108,7 @@ class _AdvanceBookingState extends State<AdvanceBooking> {
                 return ListView.builder(
                     itemCount: snapshot.data?.length ?? 0,
                     itemBuilder: (BuildContext context,int index){
-                      ProductDataModel product =
+                      AdvanceBookingModel advanceBookingModel =
                       snapshot.data[index];
                       return Card(
                           child: InkWell(
@@ -118,11 +119,11 @@ class _AdvanceBookingState extends State<AdvanceBooking> {
                             child: ListTile(
                               //leading:
                               //  Image.network(items[index].imageURL.toString()),
-                              title: Text(product.name),
+                              title: Text(advanceBookingModel.name),
                               subtitle:
-                              Text("The Date is ${product.date}"),
+                              Text("The Date is ${advanceBookingModel.date}"),
                               trailing: Text(
-                                "Rs. ${product.price}",
+                                "Rs. ${advanceBookingModel.price}",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green,

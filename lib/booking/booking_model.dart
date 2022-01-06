@@ -1,9 +1,11 @@
 class ProductDataModel {
-  String name;
-  String des;
-  //String imageURL;
   String date;
+  String des;
+  String name;
   String price;
+  //String imageURL;
+
+
 
   ProductDataModel({
       this.date,
