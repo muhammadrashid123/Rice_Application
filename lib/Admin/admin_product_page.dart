@@ -234,10 +234,10 @@ class _AdminAddProductState extends State<AdminAddProduct> {
                     controller: quantityController,
                     validator: (value) {
                       if (value.isEmpty) {
-                        return ("Please Enter Date");
+                        return ("Please Enter Quantity");
                       }
                     },
-                    decoration: InputDecoration(hintText: "Enter Date"),
+                    decoration: InputDecoration(hintText: "Enter Quantity"),
                   ),
                 ),
                 Padding(

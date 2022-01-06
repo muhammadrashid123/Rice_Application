@@ -104,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     // print('snapshot1: ' + snapshot.error.toString());
+                    print("Errorrr");
                     return Center(
                       child: Text(snapshot.error.toString()),
                     );
@@ -141,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                   }
                   else {
+                    print("mistake...");
                     return Center(child: CircularProgressIndicator());
                   }
                 }));
