@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:rice/Services/Firestore/category_firestore.dart';
 import 'package:rice/booking/booking_design.dart';
 import 'package:rice/models/category_model.dart';
 import 'package:rice/screens/details_page.dart';
@@ -22,8 +24,8 @@ class AdminCategory extends StatefulWidget {
 }
 
 class _AdminCategoryState extends State<AdminCategory> {
-    final fb = FirebaseDatabase.instance;
-   // var retrievedName="";
+  final fb = FirebaseDatabase.instance;
+  // var retrievedName="";
 
   // editing controller
   final TextEditingController category = new TextEditingController();
@@ -36,11 +38,17 @@ class _AdminCategoryState extends State<AdminCategory> {
   var _pageData = [HomePage(), MyHomePage()];
   int _selectedItem = 0;
   final _formKey = GlobalKey<FormState>();
-  @override
-  @override
+  File _image;
+  Future getImage() async {
+    final File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = File(image.path);
+    });
+  }
 
+  @override
+  @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Color(0xff636363)),
@@ -85,49 +93,48 @@ class _AdminCategoryState extends State<AdminCategory> {
                 .collection('Product-Category')
                 .snapshots()
                 .map((event) => event.docs
-                .map((e) => CateModel(
-              title: e['title'],
-            ))
-                .toList()),
+                    .map((e) => CateModel(
+                          title: e['title'],
+                        ))
+                    .toList()),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 // print('snapshot1: ' + snapshot.error.toString());
                 return Center(
                   child: Text(snapshot.error.toString()),
                 );
-              }else if (snapshot.hasData){
+              } else if (snapshot.hasData) {
                 return ListView.builder(
                     itemCount: snapshot.data?.length ?? 0,
-                    itemBuilder: (BuildContext context,int index){
-                      CateModel cateData =
-                      snapshot.data[index];
+                    itemBuilder: (BuildContext context, int index) {
+                      CateModel cateData = snapshot.data[index];
                       return Card(
                           child: InkWell(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => AdminAddProduct()));
-                            },
-                            child: ListTile(
-
-                              title: Text(cateData.title),
-                              // subtitle: Text("Pakistani Arborio rice"),
-                              // leading: Image.network(
-                              //     "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
-                              // trailing: Text(
-                              //   "Rs. 190",
-                              //   style: TextStyle(
-                              //       fontWeight: FontWeight.bold,
-                              //       color: Colors.green,
-                              //       fontSize: 18),
-                              // ),
-                            ),
-                          ));}
-                );
-              }else {
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdminAddProduct()));
+                        },
+                        child: ListTile(
+                          title: Text(cateData.title),
+                          // subtitle: Text("Pakistani Arborio rice"),
+                          // leading: Image.network(
+                          //     "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
+                          // trailing: Text(
+                          //   "Rs. 190",
+                          //   style: TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.green,
+                          //       fontSize: 18),
+                          // ),
+                        ),
+                      ));
+                    });
+              } else {
                 return Center(child: CircularProgressIndicator());
               }
-            }
-        ),
+            }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -142,15 +149,40 @@ class _AdminCategoryState extends State<AdminCategory> {
       ),
     );
   }
+
   Widget _buildPopupDialog(BuildContext context) {
     //final ref = fb.reference().child("Product-Category");
     File pickedImage;
+    final s = MediaQuery.of(context).size;
     return new AlertDialog(
       title: const Text('Add Category'),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Column(
+            children: [
+              GestureDetector(
+                  onTap: getImage,
+                  child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 40),
+                      width: s.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              height: 160,
+                              width: s.width * 0.65,
+                              child: _image == null
+                                  ? Image.asset(
+                                      "assets/rain.jpg",
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.file(_image)),
+                        ],
+                      )))
+            ],
+          ),
           // Column(
           //   crossAxisAlignment: CrossAxisAlignment.stretch,
           //   children: [
@@ -219,7 +251,7 @@ class _AdminCategoryState extends State<AdminCategory> {
                   padding: EdgeInsets.all(8.0),
                   child: TextFormField(
                     controller: category,
-                    validator: (value){
+                    validator: (value) {
                       if (value.isEmpty) {
                         return ("Please Enter Category Name");
                       }
@@ -232,13 +264,24 @@ class _AdminCategoryState extends State<AdminCategory> {
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
                     child: Text("Submit"),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
-                        FirebaseFirestore.instance
-                            .collection('Product-Category')
-                            .add({'title': category.text});
-                        Fluttertoast.showToast(msg: "Category added Successful");
+                        if(_image!=null){
+                          Navigator.pop(context);
+                          await CategoryFirestore.createCategory(
+                            title: category.text,
+                            // activities: _selectedActivities,
+                            image: _image,
+                          );
+                         }else{
+                          Fluttertoast.showToast(msg: 'Image is required');
+                        }
+                        // FirebaseFirestore.instance
+                        //     .collection('Product-Category')
+                        //     .add({'title': category.text});
+                        // Fluttertoast.showToast(
+                        //     msg: "Category added Successful");
 
                         // ref.child("title").once().then(( DataSnapshot data){
                         //   setState(() {
@@ -266,6 +309,4 @@ class _AdminCategoryState extends State<AdminCategory> {
       ],
     );
   }
-
-
 }
