@@ -1,5 +1,6 @@
 class CateModel{
   String title;
-  CateModel({this.title});
+  String image;
+  CateModel({this.title, this.image});
 
 }

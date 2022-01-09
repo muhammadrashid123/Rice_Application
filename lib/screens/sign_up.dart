@@ -7,6 +7,8 @@ import 'package:rice/models/user_model.dart';
 import 'package:rice/screens/home_page.dart';
 import 'package:rice/widgets/set.dart';
 
+import 'login.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({key}) : super(key: key);
 
@@ -386,7 +388,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
             (route) => false);
   }
 }

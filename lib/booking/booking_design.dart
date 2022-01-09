@@ -98,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         .map((e) => ProductDataModel(
                             date: e.data()['date'],
                             des: e.data()['description'],
+                             image: e.data()['image'],
                             name: e.data()['name'],
                             price: e.data()['price']))
                         .toList()),
@@ -130,6 +131,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: ListTile(
                               //leading:
                               //  Image.network(items[index].imageURL.toString()),
+                              leading: SizedBox(
+                                  height: 60,
+                                  width: 80,
+                                  child: Image.network(productDataModel.image)),
                               title: Text(productDataModel.name),
                               subtitle:
                                   Text("The Date is ${productDataModel.date}"),

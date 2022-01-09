@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:rice/Services/Firestore/advance_booking_firestore.dart';
 import 'package:rice/booking/booking_design.dart';
 import 'package:rice/booking/booking_model.dart';
 import 'package:rice/models/book_in_advance.dart';
@@ -42,6 +44,13 @@ class _AdvanceBookingState extends State<AdvanceBooking> {
   var _pageData = [HomePage(), MyHomePage()];
   int _selectedItem = 0;
   final _formKey = GlobalKey<FormState>();
+  File _image;
+  Future getImage() async {
+    final File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = File(image.path);
+    });
+  }
   @override
   @override
 
@@ -94,6 +103,7 @@ class _AdvanceBookingState extends State<AdvanceBooking> {
                 .map((e) => AdvanceBookingModel(
               date: e.data()['date'],
               des: e.data()['description'],
+              image: e.data()['image'],
               name: e.data()['name'],
               price: e.data()['price'],
             ))
@@ -119,6 +129,10 @@ class _AdvanceBookingState extends State<AdvanceBooking> {
                             child: ListTile(
                               //leading:
                               //  Image.network(items[index].imageURL.toString()),
+                                leading: SizedBox(
+                                    height: 60,
+                                    width: 80,
+                                    child: Image.network(advanceBookingModel.image)),
                               title: Text(advanceBookingModel.name),
                               subtitle:
                               Text("The Date is ${advanceBookingModel.date}"),
@@ -154,215 +168,181 @@ class _AdvanceBookingState extends State<AdvanceBooking> {
   Widget _buildPopupDialog(BuildContext context) {
     //final ref = fb.reference().child("Product-Category");
     File pickedImage;
+    final s = MediaQuery.of(context).size;
     return new AlertDialog(
       title: const Text('Add Advance Booking'),
-      content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.stretch,
-          //   children: [
-          //     const SizedBox(
-          //       height: 10,
-          //     ),
-          //     Align(
-          //       alignment: Alignment.center,
-          //       child: Stack(
-          //         children: [
-          //           Container(
-          //             padding: EdgeInsets.all(8),
-          //             decoration: BoxDecoration(
-          //               border: Border.all(color: Colors.green, width: 3),
-          //               borderRadius: const BorderRadius.all(
-          //                 Radius.circular(100),
-          //               ),
-          //             ),
-          //             child: ClipOval(
-          //                 child: pickedImage != null
-          //                     ? Image.file(
-          //                         pickedImage,
-          //                         width: 170,
-          //                         height: 170,
-          //                         fit: BoxFit.cover,
-          //                       )
-          //                     : Icon(
-          //                         Icons.camera_alt,
-          //                         color: Colors.green,
-          //                         size: 100,
-          //                       )),
-          //           ),
-          //           // Positioned(
-          //           //   bottom: 0,
-          //           //   right: 7,
-          //           //   child: IconButton(
-          //           //     onPressed: () {},
-          //           //     icon: const Icon(
-          //           //       Icons.add_a_photo_outlined,
-          //           //       color: Colors.blue,
-          //           //       size: 30,
-          //           //     ),
-          //           //   ),
-          //           // )
-          //         ],
-          //       ),
-          //     ),
-          //     const SizedBox(
-          //       height: 10,
-          //     ),
-          //     Padding(
-          //       padding: const EdgeInsets.all(8.0),
-          //       child: ElevatedButton.icon(
-          //           onPressed: () {},
-          //           icon: const Icon(Icons.add_a_photo_sharp),
-          //           label: const Text('UPLOAD IMAGE')),
-          //     )
-          //   ],
-          // ),
-          Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      // Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.stretch,
-                      //   children: [
-                      //     const SizedBox(
-                      //       height: 10,
-                      //     ),
-                      //     Align(
-                      //       alignment: Alignment.center,
-                      //       child: Stack(
-                      //         children: [
-                      //           // Container(
-                      //           //   padding: EdgeInsets.all(8),
-                      //           //   decoration: BoxDecoration(
-                      //           //     border: Border.all(color: Colors.green, width: 3),
-                      //           //     borderRadius: const BorderRadius.all(
-                      //           //       Radius.circular(100),
-                      //           //     ),
-                      //           //   ),
-                      //           //   child: ClipOval(
-                      //           //       child: pickedImage != null
-                      //           //           ? Image.file(
-                      //           //               pickedImage,
-                      //           //               width: 170,
-                      //           //               height: 170,
-                      //           //               fit: BoxFit.cover,
-                      //           //             )
-                      //           //           : Icon(
-                      //           //               Icons.camera_alt,
-                      //           //               color: Colors.green,
-                      //           //               size: 100,
-                      //           //             )),
-                      //           // ),
-                      //           // Positioned(
-                      //           //   bottom: 0,
-                      //           //   right: 7,
-                      //           //   child: IconButton(
-                      //           //     onPressed: () {},
-                      //           //     icon: const Icon(
-                      //           //       Icons.add_a_photo_outlined,
-                      //           //       color: Colors.blue,
-                      //           //       size: 30,
-                      //           //     ),
-                      //           //   ),
-                      //           // )
-                      //         ],
-                      //       ),
-                      //     ),
-                      //     // const SizedBox(
-                      //     //   height: 10,
-                      //     // ),
-                      //     // Padding(
-                      //     //   padding: const EdgeInsets.all(8.0),
-                      //     //   child: ElevatedButton.icon(
-                      //     //       onPressed: () {},
-                      //     //       icon: const Icon(Icons.add_a_photo_sharp),
-                      //     //       label: const Text('UPLOAD IMAGE')),
-                      //     // )
-                      //   ],
-                      // ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          decoration: InputDecoration(hintText: "Enter Product Name"),
-                          controller: nameController,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return ("Please Enter Product Name");
-                            }
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: descriptionEditingController,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return ("Please Enter Description");
-                            }
-                          },
-                          decoration: InputDecoration(hintText: "Enter Description"),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: dateController,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return ("Please Enter Date");
-                            }
-                          },
-                          decoration: InputDecoration(hintText: "Enter Date"),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: priceController,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return ("Please Enter Price");
-                            }
-                          },
-                          decoration: InputDecoration(hintText: "Enter Price"),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          child: Text("Submit"),
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              _formKey.currentState.save();
-                              FirebaseFirestore.instance
-                                  .collection('Product_type')
-                                  .add({
-                                'date': dateController.text,
-                                'description': descriptionEditingController.text,
-                                'name': nameController.text,
-                                'price': priceController.text
-                              });
-                              Fluttertoast.showToast(msg: "Product added Successful");
-                            }
-                          },
-                        ),
-                      )
-                    ],
+      content: SingleChildScrollView(
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+
+            Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  GestureDetector(
+                      onTap: getImage,
+                      child: Container(
+                        //margin: EdgeInsets.symmetric(horizontal: 10),
+                          width: s.width,
+                          child: SizedBox(
+                              height: 200,
+                              width: s.width,
+                              child: _image == null
+                                  ? Image.asset(
+                                "assets/upload.PNG",
+                                fit: BoxFit.cover,
+                              )
+                                  : Image.file(_image)))),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                  //   children: [
+                  //     const SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     Align(
+                  //       alignment: Alignment.center,
+                  //       child: Stack(
+                  //         children: [
+                  //           // Container(
+                  //           //   padding: EdgeInsets.all(8),
+                  //           //   decoration: BoxDecoration(
+                  //           //     border: Border.all(color: Colors.green, width: 3),
+                  //           //     borderRadius: const BorderRadius.all(
+                  //           //       Radius.circular(100),
+                  //           //     ),
+                  //           //   ),
+                  //           //   child: ClipOval(
+                  //           //       child: pickedImage != null
+                  //           //           ? Image.file(
+                  //           //               pickedImage,
+                  //           //               width: 170,
+                  //           //               height: 170,
+                  //           //               fit: BoxFit.cover,
+                  //           //             )
+                  //           //           : Icon(
+                  //           //               Icons.camera_alt,
+                  //           //               color: Colors.green,
+                  //           //               size: 100,
+                  //           //             )),
+                  //           // ),
+                  //           // Positioned(
+                  //           //   bottom: 0,
+                  //           //   right: 7,
+                  //           //   child: IconButton(
+                  //           //     onPressed: () {},
+                  //           //     icon: const Icon(
+                  //           //       Icons.add_a_photo_outlined,
+                  //           //       color: Colors.blue,
+                  //           //       size: 30,
+                  //           //     ),
+                  //           //   ),
+                  //           // )
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     // const SizedBox(
+                  //     //   height: 10,
+                  //     // ),
+                  //     // Padding(
+                  //     //   padding: const EdgeInsets.all(8.0),
+                  //     //   child: ElevatedButton.icon(
+                  //     //       onPressed: () {},
+                  //     //       icon: const Icon(Icons.add_a_photo_sharp),
+                  //     //       label: const Text('UPLOAD IMAGE')),
+                  //     // )
+                  //   ],
+                  // ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(hintText: "Enter Product Name"),
+                      controller: nameController,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return ("Please Enter Product Name");
+                        }
+                      },
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: descriptionEditingController,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return ("Please Enter Description");
+                        }
+                      },
+                      decoration: InputDecoration(hintText: "Enter Description"),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: dateController,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return ("Please Enter Date");
+                        }
+                      },
+                      decoration: InputDecoration(hintText: "Enter Date"),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: priceController,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return ("Please Enter Price");
+                        }
+                      },
+                      decoration: InputDecoration(hintText: "Enter Price"),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                      child: Text("Submit"),
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+                          if(_image!=null){
+                            Navigator.pop(context);
+                            await AdvanceBookingFirestore.createAdvanceBooking(
+                              date: dateController.text,
+                              des: descriptionEditingController.text,
+                              // activities: _selectedActivities,
+                              image: _image,
+                              name: nameController.text,
+                              price: priceController.text
+
+                            );
+                          }else{
+                            Fluttertoast.showToast(msg: 'Image is required');
+                          }
+                          // FirebaseFirestore.instance
+                          //     .collection('')
+                          //     .add({
+                          //   'date': dateController.text,
+                          //   'description': descriptionEditingController.text,
+                          //   'name': nameController.text,
+                          //   'price': priceController.text
+                          // });
+                          Fluttertoast.showToast(msg: "Advance Product added Successful");
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       actions: <Widget>[
         new FlatButton(

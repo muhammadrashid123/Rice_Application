@@ -39,16 +39,6 @@ class _AdminCategoryState extends State<AdminCategory> {
   int _selectedItem = 0;
   final _formKey = GlobalKey<FormState>();
   File _image;
-  // Future _getFromGallery() async {
-  //   PickedFile pickedFile = await ImagePicker().getImage(
-  //     source: ImageSource.gallery,
-  //     maxWidth: 1800,
-  //     maxHeight: 1800,
-  //   );
-  //   if (pickedFile != null) {
-  //     _image = File(pickedFile.path);
-  //   }
-  // }
   Future getImage() async {
     final File image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -104,7 +94,9 @@ class _AdminCategoryState extends State<AdminCategory> {
                 .snapshots()
                 .map((event) => event.docs
                     .map((e) => CateModel(
-                          title: e['title'],
+                          title: e.data()['title'],
+                          image: e.data()['image'],
+
                         ))
                     .toList()),
             builder: (context, snapshot) {
@@ -128,6 +120,7 @@ class _AdminCategoryState extends State<AdminCategory> {
                         },
                         child: ListTile(
                           title: Text(cateData.title),
+                          leading: Image.network(cateData.image),
                           // subtitle: Text("Pakistani Arborio rice"),
                           // leading: Image.network(
                           //     "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
@@ -175,14 +168,14 @@ class _AdminCategoryState extends State<AdminCategory> {
               GestureDetector(
                   onTap: getImage,
                   child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      //margin: EdgeInsets.symmetric(horizontal: 10),
                       width: s.width,
                       child: SizedBox(
-                          height: 160,
+                          height: 200,
                           width: s.width,
                           child: _image == null
                               ? Image.asset(
-                                  "assets/rain.jpg",
+                                  "assets/upload.PNG",
                                   fit: BoxFit.cover,
                                 )
                               : Image.file(_image))))

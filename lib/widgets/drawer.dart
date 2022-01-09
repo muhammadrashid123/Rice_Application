@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rice/Admin/admin_category.dart';
 import 'package:rice/Admin/admin_home.dart';
 import 'package:rice/Admin/advance_booking.dart';
+import 'package:rice/screens/login.dart';
 import 'package:rice/screens/rice_type.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -79,9 +80,15 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.person),
             title: Text("Profile"),
           ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text("Logout"),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
+            child: ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Logout"),
+            ),
           ),
         ],
       ),
