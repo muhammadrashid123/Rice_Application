@@ -59,14 +59,15 @@ class _TypeRiceState extends State<TypeRice> {
         padding: const EdgeInsets.all(20),
         child: StreamBuilder(
           stream: FirebaseFirestore.instance
-              .collection('Product_type')
+              .collection('Product-Category').doc('8jcp8EHqiLlJohvhpIz6').collection('product')
               .snapshots()
               .map((event) => event.docs
               .map((e) => ProductModel(
-              des: e['description'],
-              name: e['name'],
-              price: e['price'],
-              quantity: e['quantity']))
+              des: e.data()['description'],
+              image: e.data()['image'],
+              name: e.data()['name'],
+              price: e.data()['price'],
+              quantity: e.data()['quantity']))
               .toList()),
           builder: (context, snapshot) {
     if (snapshot.hasError) {
@@ -90,7 +91,10 @@ class _TypeRiceState extends State<TypeRice> {
                         child: ListTile(
                           title: Text(productData.name),
                           subtitle: Text(productData.des),
-                          //leading: Image.network(
+                          leading: SizedBox(
+                            width: 80,
+                              height:60,
+                              child: Image.network(productData.image)),
                           //  "https://www.jessicagavin.com/wp-content/uploads/2020/03/types-of-rice-arborio-600x400.jpg"),
                           trailing: Text(
                             productData.price,
