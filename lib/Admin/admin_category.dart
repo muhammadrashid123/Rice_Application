@@ -39,6 +39,16 @@ class _AdminCategoryState extends State<AdminCategory> {
   int _selectedItem = 0;
   final _formKey = GlobalKey<FormState>();
   File _image;
+  // Future _getFromGallery() async {
+  //   PickedFile pickedFile = await ImagePicker().getImage(
+  //     source: ImageSource.gallery,
+  //     maxWidth: 1800,
+  //     maxHeight: 1800,
+  //   );
+  //   if (pickedFile != null) {
+  //     _image = File(pickedFile.path);
+  //   }
+  // }
   Future getImage() async {
     final File image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -165,22 +175,17 @@ class _AdminCategoryState extends State<AdminCategory> {
               GestureDetector(
                   onTap: getImage,
                   child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 40),
+                      margin: EdgeInsets.symmetric(horizontal: 10),
                       width: s.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                              height: 160,
-                              width: s.width * 0.65,
-                              child: _image == null
-                                  ? Image.asset(
-                                      "assets/rain.jpg",
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Image.file(_image)),
-                        ],
-                      )))
+                      child: SizedBox(
+                          height: 160,
+                          width: s.width,
+                          child: _image == null
+                              ? Image.asset(
+                                  "assets/rain.jpg",
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.file(_image))))
             ],
           ),
           // Column(

@@ -70,49 +70,50 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                  height: 700,
-                  width: double.infinity,
-                  child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 5.0,
-                      mainAxisSpacing: 5.0,
-                      childAspectRatio: 6/7,
-                    ),
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => TypeRice()));
-                        },
-                        child: Card(
-                          child: Column(
-                            children: [
-                              Image.asset("assets/rain.jpg"),
-                              // Image.network(
-                              //     "https://www.istockphoto.com/photo/transparent-umbrella-under-rain-against-water-drops-splash-background-rainy-weather-gm1257951336-368822698?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Frain&utm_term=rain%3A%3A%3A"),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "Arborio Rice",
-                                style: TextStyle(
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              )
-                            ],
-                          ),
-                        ),
-                      );
+              GridView.builder(
+                physics: ScrollPhysics(),
+                shrinkWrap: true,
+                primary: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5.0,
+                  mainAxisSpacing: 5.0,
+                  childAspectRatio: 6/7,
+                ),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TypeRice()));
                     },
-                  ))
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Image.asset("assets/rain.jpg"),
+                          // Image.network(
+                          //     "https://www.istockphoto.com/photo/transparent-umbrella-under-rain-against-water-drops-splash-background-rainy-weather-gm1257951336-368822698?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Frain&utm_term=rain%3A%3A%3A"),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Arborio Rice",
+                            style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
 
                   // GridView.builder(
                   //   itemCount: 6,
