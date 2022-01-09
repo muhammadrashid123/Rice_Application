@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rice/Admin/admin_category.dart';
 import 'package:rice/Admin/admin_home.dart';
-import 'package:rice/Advance_Booking_Admin/advance_booking_admin.dart';
+
+import 'package:rice/Admin/advance_booking.dart';
+import 'package:rice/screens/login.dart';
 import 'package:rice/screens/rice_type.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -70,10 +72,10 @@ class _MyDrawerState extends State<MyDrawer> {
               //   context: context,
               //   builder: (BuildContext context) => _buildPopupDialog(context),
               // );
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => AdvanceBookingAdmin()));
+
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AdvanceBooking()));
+
             },
           ),
           Divider(height: 2),
@@ -81,9 +83,15 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.person),
             title: Text("Profile"),
           ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text("Logout"),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
+            child: ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Logout"),
+            ),
           ),
         ],
       ),

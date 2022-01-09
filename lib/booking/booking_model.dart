@@ -1,25 +1,20 @@
 class ProductDataModel {
-  int id;
+  String date;
+  String des;
+  String image;
   String name;
-  String category;
-  String imageURL;
-  String oldPrice;
   String price;
+  //String imageURL;
 
-  ProductDataModel(
-      {this.id,
+
+
+  ProductDataModel({
+      this.date,
+      this.des,
+      this.image,//
       this.name,
-      this.category,
-      this.imageURL,
-      this.oldPrice,
-      this.price});
+      this.price,
+      });
 
-  ProductDataModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    category = json['category'];
-    imageURL = json['imageUrl'];
-    oldPrice = json['oldPrice'];
-    price = json['price'];
-  }
+
 }

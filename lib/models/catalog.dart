@@ -1,7 +1,7 @@
-class CatalogModel {
+/*class CatalogModel {
   static List<Item> items = [
     Item(
-      id: 1,
+      date: 1,
       name: "Super Rice",
       desc: "Pakistan Super Kernel Basmati white Rice",
       price: "169",
@@ -10,18 +10,18 @@ class CatalogModel {
     )
   ];
 }
-
+*/
 class Item {
-  final int id;
+  final String date;
   final String name;
   final String desc;
-  final String price;
+  final int price;
   final String image;
 
-  Item({this.id, this.name, this.desc, this.price, this.image});
+  Item({this.date, this.name, this.desc, this.price, this.image});
   factory Item.fromMap(Map<String, dynamic> map) {
     return Item(
-      id: map["id"],
+      date: map["date"],
       name: map["name"],
       desc: map["desc"],
       price: map["price"],
@@ -30,7 +30,7 @@ class Item {
   }
 
   toMap() => {
-        "id": id,
+        "date": date,
         "name": name,
         "desc": desc,
         "price": price,
